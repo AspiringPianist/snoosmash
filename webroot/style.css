@@ -1,0 +1,266 @@
+:root {
+  --bg-dark: #0d1b1e;        /* Deep cyan-teal for a futuristic dark background */
+  --bg-medium: #102a2d;      /* Slightly lighter dark teal for contrast */
+  --accent-primary: #1f5f5b; /* Muted teal for UI elements like headers */
+  --accent-secondary: #2ecc71; /* Bright neon green for accents */
+  --text-color: #c8facc;      /* Soft neon green for text, easy on the eyes */
+
+  /* Neon Retro Highlights */
+  --neon-blue: #18f7f2;      /* Vibrant cyan for futuristic highlights */
+  --neon-green: #1cff9e;     /* Electric green for buttons and accents */
+  --neon-yellow: #eaff33;    /* Punchy yellow for details or warnings */
+  --neon-orange: #ff9e00;    /* Deep orange for secondary highlights */
+  --neon-purple: #be00ff;    /* Vivid purple for complementary contrast */
+  --black: #000000;          /* Pure black for shadows and borders */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Press Start 2P', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-color);
+}
+
+.game-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(45deg, var(--neon-green), var(--bg-medium));
+  padding: 10px;
+}
+
+.main-menu, .game-screen, .game-over-screen, .achievements-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.menu-buttons, .game-over-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 300px;
+}
+
+button {
+  padding: 12px 24px;
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+  color: var(--black);
+  font-family: 'Press Start 2P', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 3px solid var(--neon-blue);
+  border-radius: 8px;
+  cursor: pointer;
+  text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-blue);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(45deg, var(--neon-purple), var(--neon-orange));
+  box-shadow: 0 0 15px var(--neon-purple), 0 0 30px var(--neon-green);
+}
+
+button:active {
+  transform: scale(0.95);
+  background: var(--neon-blue);
+  box-shadow: inset 0 0 10px var(--neon-blue);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--neon-yellow);
+  text-shadow: 0 4px 6px var(--neon-blue), 0 0 15px var(--neon-green);
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-purple));
+  box-shadow: 0 0 10px var(--neon-blue);
+  border: 2px solid var(--neon-green);
+}
+
+#game-container {
+  width: 100%;
+  height: 350px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid var(--neon-blue);
+  box-shadow: 0 0 20px var(--neon-blue);
+  position: relative;
+  max-width: 600px;
+}
+
+.game-footer {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(45deg, var(--neon-purple), var(--neon-orange));
+  border-top: 2px solid var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.challenge-box {
+  flex-grow: 1;
+  margin-right: 10px;
+  font-size: 0.8rem;
+}
+
+#achievement-button {
+  padding: 10px 20px;
+  font-size: 0.8rem;
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+  border: 2px solid var(--neon-green);
+  border-radius: 8px;
+  color: var(--black);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#achievement-button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(45deg, var(--neon-purple), var(--neon-yellow));
+  box-shadow: 0 0 15px var(--neon-yellow), 0 0 30px var(--neon-purple);
+}
+
+#notification-container {
+  position: fixed;
+  top: -100px;
+  right: 10px;
+  width: auto;
+  max-width: 250px;
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+  color: var(--black);
+  font-family: 'Press Start 2P', sans-serif;
+  padding: 8px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-blue);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(0);
+  transition: all 0.5s ease;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+#notification-container.show {
+  top: 20px; /* Slide into view */
+  opacity: 1;
+}
+
+.achievements-screen {
+  overflow-y: auto;
+  padding: 10px;
+}
+
+#achievements-list {
+  width: 100%;
+  max-width: 400px;
+  overflow-y: auto;
+  max-height: 300px;
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  box-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-purple);
+}
+
+.achievement-icon {
+  font-size: 2rem;
+  margin-right: 10px;
+}
+
+.achievement-details {
+  flex-grow: 1;
+  text-align: left;
+}
+/* Add styles for the misses counter */
+.game-stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+#misses-counter {
+  color: var(--neon-orange);
+  font-size: 0.8rem;
+  text-shadow: 0 0 5px var(--neon-orange);
+}
+
+#final-misses {
+  color: var(--neon-orange);
+  margin: 10px 0;
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px var(--neon-orange);
+}
+.leaderboard-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+}
+
+#leaderboard-list {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.leaderboard-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 5px 0;
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+  border-radius: 5px;
+}
+
+.rank {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--neon-yellow);
+}

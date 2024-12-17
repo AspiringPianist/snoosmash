@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />    <meta charset="UTF-8" />
+    <title>Snoo Smash!</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      @font-face {
+          font-family: 'Press Start 2P';
+          src: url('./fonts/PressStart2P-Regular.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+      }
+
+      body {
+          font-family: 'Press Start 2P', sans-serif;
+      }
+  </style>    <script src="gsap.min.js"></script>
+    <script src="confetti.min.js"></script>
+    <script src="phaser.min.js"></script> 
+  </head>
+  <body>
+    <div class="game-wrapper">
+      <div class="main-menu">
+        <h1>Snoo Smash!</h1>
+        <div class="menu-buttons">
+          <button id="start-game">Start Game</button>
+          <button id="high-scores">High Scores</button>
+          <button id="how-to-play">How to Play</button>
+          <button id="view-leaderboard">View Leaderboard</button>
+
+
+        </div>
+      </div>
+      <div class="leaderboard-screen" style="display:none;">
+        <h2>Top Players</h2>
+        <div id="leaderboard-list"></div>
+        <button id="back-from-leaderboard">Back</button>
+      </div>
+
+      <div class="game-screen" style="display:none;">
+        <div class="game-header">
+          <div class="player-info">
+            <span id="username">Guest</span>
+            <span id="score">0</span>
+          </div>
+<div class="game-stats">
+  <div id="misses-counter">Misses: 0/5</div>
+</div>
+
+          <div class="timer-container">
+            <span id="timer">60</span>
+          </div>
+        </div>
+
+        <div id="game-container"></div>
+
+        <div class="game-footer">
+          <div class="challenge-box">
+            <h3>Daily Challenge</h3>
+            <p id="challenge-description">Hit 30 snoos without missing</p>
+            <div id="challenge-progress">0/30</div>
+          </div>
+
+          <button id="achievement-button">View Achievements</button>
+
+        </div>
+      </div>
+
+      <div class="game-over-screen" style="display:none;">
+        <h2>Game Over!</h2>
+        <p id="final-score">Your Score: 0</p>
+        <div id="final-misses"></div>
+        <div class="game-over-buttons">
+          <button id="restart-game">Restart</button>
+          <button id="back-to-menu">Main Menu</button>
+        </div>
+      </div>
+
+      <div class="achievements-screen" style="display:none;">
+        <h2>Achievements</h2>
+        <div id="achievements-list"></div>
+        <button id="back-from-achievements">Back</button>
+      </div>
+      <div id="notification-container"></div>
+
+      <div id="confetti-container"></div>
+    </div>
+
+    <script type="application/javascript" src="script.js"></script>
+  </body>
+</html>
